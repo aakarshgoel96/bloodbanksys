@@ -8,11 +8,16 @@ $query = "SELECT username FROM user_info WHERE ((username = '$username' OR email
       $data = mysqli_query($dbc, $query);
       if (mysqli_num_rows($data) == 1) {
 
-   echo 'Log successful for '.$username.'!!';
+  $name=array();
+while($row=mysqli_fetch_array($data))
+{
+$name[]=$row['name'];
+}
+ print json_encode($name);
 }
 else
 {
-echo "Wrong username or password";
+echo "Wrong";
 }
   mysqli_close($dbc);
 
